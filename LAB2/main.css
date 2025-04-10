@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: whitesmoke;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    justify-content: center;
+    height: 40px;
+    align-items: center;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.container {
+    width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border: 2px solid black;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+  
+.form-row label {
+    width: 120px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+  
+.form-row input,
+.form-row select {
+    flex: 1;
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 50%
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+}
+
+.buttons {
+    text-align: left;
+    margin-top: 20px;
+}
+  
+.signup-btn {
+    background-color: lightgreen;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+  
+.cancel-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
