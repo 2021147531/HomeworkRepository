@@ -1,0 +1,210 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: whitesmoke;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1020px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    padding: 2%;
+}
+
+.title {
+    text-align: left;
+    margin-top: 50px;
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.nav a {
+    text-decoration: none;
+    color: black;
+}
+
+.nav .current-page {
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+}
+
+
+
+.search-bar {
+    display: flex;
+    margin: 20px 0;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.section-title {
+    font-size: 20px;
+    margin: 20px 0 10px;
+}
+
+.movie-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.filter {
+    width: 150px;
+    height: 180px;
+    flex-shrink: 0;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.movies {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.movie-card {
+    width: 200px;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.movie-card img {
+    width: 200px;
+    height: 300px; 
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.movie-title {
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.movie-date {
+    font-size: 14px;
+    color: gray;
+}
+
+/* 기존 login과 signup 페이지용 */
+
+.form-container {
+    width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border: 2px solid black;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+  
+.form-row label {
+    width: 120px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+  
+.form-row input,
+.form-row select {
+    flex: 1;
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 50%
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+}
+
+.buttons {
+    text-align: left;
+    margin-top: 20px;
+}
+  
+.signup-btn {
+    background-color: lightgreen;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+  
+.cancel-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 미디어 쿼리 처리 부분 */
+/* 480px 이하일 때 케이스 */
+@media (max-width: 480px) {
+    .movie-box {
+        width: 100%;
+    }
+
+    .subtitle {
+        text-align: center;
+    }
+}
+
+/* 481px ~ 800px일 때 케이스 */
+@media (min-width: 481px) and (max-width: 800px) {
+    .movie-box {
+        width: 48%;
+    }
+
+    .subtitle {
+        text-align: center;
+    }
+}
+
+/* 801px 이상일 때 케이스 */
+@media (min-width: 800px) {
+    .nav {
+        flex-direction: row;
+    }
+    .text-holder {
+        column-count: 2;
+    }
+}
