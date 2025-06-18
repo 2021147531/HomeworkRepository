@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>영화 상세 페이지</title>
+    <link rel="stylesheet" type="text/css" href="/main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 제목 -->
+        <div class="title-holder">
+            <h1 class="title">인프밍 영화 정보 사이트입니다.</h1>
+        </div>
+
+        <!-- 네비게이션 바 -->
+        <div class="nav">
+            <a href="/index.html" class="current-page">메인페이지</a>
+            <a href="/login.html">로그인</a>
+            <a href="/signup.html">회원가입</a>
+        </div>
+
+        <!-- 상세 정보 영역 -->
+        <div id="movie-detail"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // movie id를 추출
+            const pathParts = window.location.pathname.split("/");
+            const id = pathParts[pathParts.length - 1];
+
+            // 댓글 불러오기
+            function loadComments() {
+                fetch(`/comments/${id}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error("댓글 로딩 실패");
+                        return res.json();
+                    })
+                    .then(comments => {
+                        const commentList = document.getElementById("comment-list");
+                        commentList.innerHTML = comments.map(c => `<p>${c}</p>`).join("");
+                    })
+                    .catch(err => {
+                        const commentList = document.getElementById("comment-list");
+                        commentList.innerHTML = `<p style="color:red;">댓글을 불러오는 데 실패했습니다.</p>`;
+                    });
+            }
+
+            // 영화 정보 불러오기
+            fetch(`/movie/${id}`)
+                .then(res => {
+                    if (!res.ok) throw new Error("영화 정보를 불러오지 못했습니다.");
+                    return res.json();
+                })
+                .then(movie => {
+                    const detail = document.getElementById("movie-detail");
+                    detail.innerHTML = `
+                        <div class="detail-box">
+                            <div class="detail-layout">
+                                <img src="/images/${movie.movie_image}" alt="${movie.movie_title}" class="detail-poster">
+                                <div class="detail-info">
+                                    <p><strong>영화 id:</strong> ${movie.movie_id}</p>
+                                    <h2>🎬 영화 제목: ${movie.movie_title}</h2>
+                                    <p>📅 <strong>개봉일:</strong> ${movie.movie_release_date}</p>
+                                    <p>⭐ <strong>평점:</strong> ${movie.movie_rate}</p>
+                                    <p>📖 <strong>줄거리:</strong> ${movie.movie_overview}</p>
+                                </div>
+                            </div>
+                            <div class="detail-comments">
+                                <h3>📝 영화 후기</h3>
+                                <div id="comment-list"></div>
+                                <form id="comment-form">
+                                    <input type="text" id="comment-input" placeholder="댓글을 입력하세요" required style="width: 80%; padding: 8px;">
+                                    <button type="submit" style="padding: 8px 12px;">작성</button>
+                                </form>
+                            </div>
+                        </div>
+                    `;
+                    loadComments();
+                })
+                .catch(err => {
+                    document.getElementById("movie-detail").innerText = "영화 정보를 불러오는 데 실패했습니다.";
+                });
+
+            
+            // 댓글 작성을 위한 이벤트
+            document.addEventListener("submit", (e) => {
+                if (e.target.id === "comment-form") {
+                    e.preventDefault();
+                    const input = document.getElementById("comment-input");
+                    const comment = input.value.trim();
+                    if (!comment) return;
+
+                    fetch(`/comments/${id}`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ comment })
+                    })
+                    .then(res => res.json())
+                    .then(() => {
+                        input.value = "";
+                        loadComments();
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
