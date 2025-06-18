@@ -12,7 +12,7 @@
             <div class="title-holder">
                 <h1 class="title">인프밍 영화 정보 사이트입니다.</h1>
             </div>
-            
+
             <!-- 네비게이션 바 -->
             <div class="nav">
                 <a href="index.html" class="current-page">메인페이지</a>
@@ -59,7 +59,7 @@
                 if (!response.ok) throw new Error('JSON 로딩 실패');
                 return response.json();
                 })
-            // 
+            //
             .then(data => {
                 allMovies = data;
                 filteredMovies = [...allMovies];    // 우선 filteredMovies에 allMovies를 그대로 복사
@@ -80,7 +80,7 @@
                 // 검색 단어가 없을 경우의 케이스
                 if (keyword === '') {
                     filteredMovies = [...allMovies];    // 필터 된 것과 전체가 동일
-                } 
+                }
                 // 검색 단어가 있을 경우의 케이스
                 else {
                     // movie의 title에 해당 keyword가 있는지 필터링하여 filteredMovies로 저장
